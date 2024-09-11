@@ -7,6 +7,21 @@ This program was created by Gabe Baksa and Brenden Granzo
 """
 from collections import deque
 
+graph = {
+    "start": ["1", "11"],
+    "1": ["start", "4", "2"],
+    "2": ["1"],
+    "3": ["4"],
+    "4": ["1", "3", "5"],
+    "5": ["4", "7", "6"],
+    "6": ["5"],
+    "7": ["5", "9", "8"],
+    "8": ["7"],
+    "9": ["7", "goal", "10"],
+    "10": ["9"],
+    "11": ["start"],
+    "goal": ["9"]
+}
 
 def dfs_find_goal(graph, start, goal, path=None, visited=None):
     if path is None:
