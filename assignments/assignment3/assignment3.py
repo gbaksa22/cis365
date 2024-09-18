@@ -1,3 +1,156 @@
+import heapq
+import math
+
+
+class Square:
+    def __init__(self):
+        self.parent_x = 0
+        self.parent_y = 0
+        self.f = float('inf')
+        self.g = float('inf')
+        self.h = 0
+
+
+columns = 11
+rows = 11
+
+
+def valid(col, row):
+    return (col >= 0) and (col < columns) and (row >= 0) and (row < rows)
+
+
+def unblocked(grid, row, col):
+    return grid[row][col] == 1
+
+
+def h_value(col, row, dest):
+    return ((col - dest[0]) ** 2 + (row - dest[1]) ** 2) ** 0.5
+
+
+def destination(col, row, dest):
+    return col == dest[0] and row == dest[1]
+
+
+def trace(square_details, dest):
+    print('The path is...')
+    path = []
+    col = dest[0]
+    row = dest[1]
+
+    while not (square_details[col][row].parent_x == col and square_details[col][row].parent_y == row):
+        path.append((col, row))
+        current_col = square_details[col][row].parent_x
+        current_row = square_details[col][row].parent_y
+        col = current_col
+        row = current_row
+
+    path.append((col, row))
+    path.reverse()
+
+    for s in path:
+        print(s, '-->', end=' ')
+    print()
+
+
+def a_star(grid, start, dest):
+    if not valid(start[1], start[0]) or not valid(dest[1], dest[0]):
+        print('Invalid start or destination')
+        return
+
+    if not unblocked(grid, start[0], start[1]) or not unblocked(grid, dest[0], dest[1]):
+        print('The source or destination is blocked')
+        return
+
+    if destination(start[0], start[1], dest):
+        print('You have already reached the destination square')
+        return
+
+    closed_list = [[False for _ in range(columns)] for _ in range(rows)]
+    square_details = [[Square() for _ in range(columns)] for _ in range(rows)]
+
+    x = start[0]
+    y = start[1]
+    square_details[x][y].f = 0
+    square_details[x][y].g = 0
+    square_details[x][y].h = 0
+    square_details[x][y].parent_x = x
+    square_details[x][y].parent_y = y
+
+    square_list = []
+    heapq.heappush(square_list, (0.0, x, y))
+
+    dest_found = False
+
+    while len(square_list) > 0:
+        p = heapq.heappop(square_list)
+
+        x = p[1]
+        y = p[2]
+
+        closed_list[x][y] = True
+
+        possible_directions = [(0, 1), (0, -1), (1, 0), (1, 1), (-1, 0), (-1, 1), (-1, -1), (1, -1)]
+
+        for d in possible_directions:
+            new_x = x + d[0]
+            new_y = y + d[1]
+
+            if valid(new_x, new_y) and unblocked(grid, new_x, new_y) and not closed_list[new_x][new_y]:
+                if destination(new_x, new_y, dest):
+                    square_details[new_x][new_y].parent_x = x
+                    square_details[new_x][new_y].parent_y = y
+                    print('We have a path to the destination square!')
+
+                    trace(square_details, dest)
+
+                    dest_found = True
+                    return
+
+                else:
+                    new_g = square_details[x][y].g + 1.0
+                    new_h = h_value(new_x, new_y, dest)
+                    new_f = new_g + new_h
+
+                    if square_details[new_x][new_y].f == float('inf') or square_details[new_x][new_y].f > new_f:
+                        heapq.heappush(square_list, (new_f, new_x, new_y))
+
+                        square_details[new_x][new_y].f = new_f
+                        square_details[new_x][new_y].g = new_g
+                        square_details[new_x][new_y].h = new_h
+                        square_details[new_x][new_y].parent_x = x
+                        square_details[new_x][new_y].parent_y = y
+
+    if not dest_found:
+        print('Could not find the destination square :(')
+
+
+def main():
+    # in the following grid, 1 means the path is available and 0 means it is blocked
+    # the walls in the map diagram are "widened" to boxes to make sense in this application
+    grid = [
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1],
+        [1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1],
+        [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1],
+        [1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1],
+        [1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 1],
+        [1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0],
+        [1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0],
+        [1, 1, 0, 0, 0, 0, 1, 1, 0, 1, 1],
+        [1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+    ]
+
+    start = [0, 0]
+
+    dest = [10, 10]
+
+    a_star(grid, start, dest)
+
+
+if __name__ == "__main__":
+    main()
+
 graph = {
     "a1": ["b1", "a2"],
     "b1": ["a1", "c1", "b2"],
