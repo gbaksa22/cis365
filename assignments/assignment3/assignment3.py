@@ -80,6 +80,16 @@ def a_star(graph, start, goal):
     print("Path not found")
     return
 
+
+def main():
+    start = "a1"
+    goal = "h9"
+    a_star(graph, start, goal)
+
+if __name__ == "__main__":
+    main()
+
+
 #ChatGPT assisted in setting up the graph
 graph = {
     "a1": ["b1", "a2", "b2"],
@@ -163,12 +173,3 @@ graph = {
     "g9": ["g8", "f9", "h9", "f8", "h8"],
     "h9": ["h8", "g8", "g9"]
 }
-
-def main():
-    start = "a1"
-    goal = "h9"
-    a_star(graph, start, goal)
-
-if __name__ == "__main__":
-    main()
-
