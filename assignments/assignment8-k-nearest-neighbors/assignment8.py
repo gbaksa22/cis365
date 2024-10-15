@@ -6,23 +6,19 @@ from collections import Counter
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-# Load the iris dataset
 irisDataPath = './iris/iris.data'
 columnNames = ['sepalLength', 'sepalWidth', 'petalLength', 'petalWidth', 'species']
 iris = pd.read_csv(irisDataPath, header=None, names=columnNames)
 
-# Split data into features and labels
 features = iris[['sepalLength', 'sepalWidth', 'petalLength', 'petalWidth']].values
 labels = iris['species'].values
 
 # Split the data: 60% training, 40% testing
 xTrain, xTest, yTrain, yTest = train_test_split(features, labels, test_size=0.4, random_state=22)
 
-# Euclidean distance function
 def euclidean_distance(point1, point2):
     return np.sqrt(np.sum((point1 - point2) ** 2))
 
-# KNN algorithm
 def knn_classifier(x_train, y_train, x_test_point, k):
     distances = []
     
@@ -39,20 +35,17 @@ def knn_classifier(x_train, y_train, x_test_point, k):
     most_common = Counter(neighbors).most_common(1)
     return most_common[0][0]
 
-# Function to test the classifier and create confusion matrix
 def test_knn(x_train, y_train, x_test, y_test, k):
     y_pred = []
     
     for x_test_point in x_test:
         y_pred.append(knn_classifier(x_train, y_train, x_test_point, k))
     
-    # Create the confusion matrix and accuracy score
     cm = confusion_matrix(y_test, y_pred)
     accuracy = accuracy_score(y_test, y_pred)
     
     return cm, accuracy
 
-# Plot confusion matrix
 def plot_confusion_matrix(cm, accuracy, k, features_used):
     plt.figure(figsize=(4, 4))
     sns.heatmap(cm, annot=True, fmt="d", cmap="Reds")
@@ -61,7 +54,6 @@ def plot_confusion_matrix(cm, accuracy, k, features_used):
     plt.title(f"K={k}, Features: {features_used}\nAccuracy: {accuracy:.2f}")
     plt.show()
 
-# Feature subsets to test
 feature_sets = {
     'a': [0],  # single feature: sepalLength
     'b': [0, 1],  # two features: sepalLength, sepalWidth
@@ -69,10 +61,9 @@ feature_sets = {
     'd': [0, 1, 2, 3]  # all features
 }
 
-# Values of k to test
 k_values = [3, 5, 7]
 
-# Loop over all feature sets and k values
+# ChatGPT helped loop through all of the options
 for feature_set_key, feature_indices in feature_sets.items():
     xTrain_subset = xTrain[:, feature_indices]
     xTest_subset = xTest[:, feature_indices]
