@@ -37,6 +37,7 @@ def knn_classifier(x_train, y_train, x_test_point, k):
         distances.append((dist, y_train[i]))
 
     # Sort the distances, and select the k nearest points
+    # Had to ask ChatGPT how to get the first element from each tuple
     distances.sort(key=lambda x: x[0])
     neighbors = [distances[i][1] for i in range(k)]
 
