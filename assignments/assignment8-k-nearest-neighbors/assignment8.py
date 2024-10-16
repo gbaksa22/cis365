@@ -1,3 +1,12 @@
+"""
+CIS 365 - Assignment 8
+
+Date - 10/16/2024
+
+This program was created by Gabe Baksa and Brenden Granzo
+
+Used Bayesian Classifier Assignment as reference
+"""
 import pandas as pd
 import numpy as np
 from sklearn.metrics import confusion_matrix, accuracy_score
