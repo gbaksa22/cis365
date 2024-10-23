@@ -1,3 +1,10 @@
+"""
+CIS 365 - Assignment 9
+
+Date - 10/23/2024
+
+This program was created by Gabe Baksa and Brenden Granzo
+"""
 import numpy as np
 
 class Perceptron:
