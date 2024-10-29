@@ -12,31 +12,32 @@ import matplotlib.pyplot as plt
 image_path = "the-rock.png"
 image = Image.open(image_path)
 
-# Define the updated resolutions
+# Define the resolutions
 small_size = (25, 25)    # Small resolution
 medium_size = (100, 100)  # Medium resolution
 large_size = (400, 400)   # Large resolution
 
-# Step 3a: Display the small resolution image in a new window
+# Resize images
 small_image = image.resize(small_size)
-plt.figure("Small Resolution - 25x25", figsize=(5, 5))
-plt.imshow(small_image)
-plt.title("Small Resolution (25x25)")
-plt.axis('off')
-plt.show()
-
-# Step 3b: Display the medium resolution image in a new window
 medium_image = image.resize(medium_size)
-plt.figure("Medium Resolution - 100x100", figsize=(5, 5))
-plt.imshow(medium_image)
-plt.title("Medium Resolution (100x100)")
-plt.axis('off')
-plt.show()
-
-# Step 3c: Display the large resolution image in a new window
 large_image = image.resize(large_size)
-plt.figure("Large Resolution - 400x400", figsize=(5, 5))
-plt.imshow(large_image)
-plt.title("Large Resolution (400x400)")
-plt.axis('off')
+
+# Step 4: Display all three resolutions on a single plot
+fig, axes = plt.subplots(1, 3, figsize=(15, 5))
+
+# Small image
+axes[0].imshow(small_image)
+axes[0].set_title("Small Resolution (25x25)")
+axes[0].axis('off')
+
+# Medium image
+axes[1].imshow(medium_image)
+axes[1].set_title("Medium Resolution (100x100)")
+axes[1].axis('off')
+
+# Large image
+axes[2].imshow(large_image)
+axes[2].set_title("Large Resolution (400x400)")
+axes[2].axis('off')
+
 plt.show()
