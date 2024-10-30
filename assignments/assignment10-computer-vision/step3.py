@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 image_path = "the-rock.png"
 image = Image.open(image_path)
 
+# asked ChatGPT how to resize an image
 small_size = (25, 25)
 medium_size = (100, 100)
 large_size = (400, 400)
