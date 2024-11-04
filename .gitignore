@@ -1,0 +1,31 @@
+# CIFAR-10 Data
+assignments/assignment11-cnn/data/cifar-10-python.tar.gz
+assignments/assignment11-cnn/data/cifar-10-batches-py/batches.meta
+assignments/assignment11-cnn/data/cifar-10-batches-py/data_batch_1
+assignments/assignment11-cnn/data/cifar-10-batches-py/data_batch_2
+assignments/assignment11-cnn/data/cifar-10-batches-py/data_batch_3
+assignments/assignment11-cnn/data/cifar-10-batches-py/data_batch_4
+assignments/assignment11-cnn/data/cifar-10-batches-py/data_batch_5
+assignments/assignment11-cnn/data/cifar-10-batches-py/readme.html
+assignments/assignment11-cnn/data/cifar-10-batches-py/test_batch
+
+# CIFAR-100 Data
+assignments/assignment11-cnn/data/cifar-100-python.tar.gz
+assignments/assignment11-cnn/data/cifar-100-python/cifar-100-python/file.txt~
+assignments/assignment11-cnn/data/cifar-100-python/cifar-100-python/meta
+assignments/assignment11-cnn/data/cifar-100-python/cifar-100-python/test
+assignments/assignment11-cnn/data/cifar-100-python/cifar-100-python/train
+
+# Training Data
+assignments/assignment11-cnn/cifar_net.pth
+assignments/assignment11-cnn/cifar2_net.pth
+assignments/assignment11-cnn/cifar5_net.pth
+assignments/assignment11-cnn/cifar10_net.pth
+assignments/assignment11-cnn/cifar100_net.pth
+
+# Other (cache files, temporary files, etc.)
+assignments/assignment11-cnn/__pycache__/cifar10.cpython-312.pyc
+assignments/assignment11-cnn/__pycache__/enhanced_cifar10.cpython-312.pyc
+assignments/assignment11-cnn/__pycache__/train2.cpython-312.pyc
+assignments/assignment11-cnn/__pycache__/train5.cpython-312.pyc
+assignments/assignment11-cnn/__pycache__/train100.cpython-312.pyc
