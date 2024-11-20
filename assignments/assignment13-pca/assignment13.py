@@ -30,7 +30,6 @@ eigenVectors = eigenVectors[:, sortedIndices]
 
 # 6. Set the numberOfEigenVectorsToKeep = 15
 numberOfEigenVectorsToKeep = 15  # Change to 100, 200 later
-eigenVectorsToKeep = eigenVectors[:, :numberOfEigenVectorsToKeep]
 
 # 7. Output the percentage of variance that those eigenvectors account for
 def variance_explained(eigenValues, numVectors):
@@ -42,6 +41,7 @@ variance = variance_explained(eigenValues, numberOfEigenVectorsToKeep)
 print(f"{numberOfEigenVectorsToKeep} eigenvectors account for {variance:.2f}% of the variance.")
 
 # 8. Create a variable ‘eigenVectorsToKeep’ that only contains that number of eigenVectors
+eigenVectorsToKeep = eigenVectors[:, :numberOfEigenVectorsToKeep]
 
 # 9. Create a variable ‘compressedImage’ it should be calculated by using:
 # compressedImage = np.matmul(myImageMinusMean, eigenVectorsToKeep)
