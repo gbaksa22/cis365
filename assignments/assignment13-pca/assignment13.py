@@ -21,6 +21,7 @@ myImageMinusMean = myImage - myImageMean
 covarianceMatrix = np.cov(myImageMinusMean, rowvar=False)
 
 # 4. Find the Eigenvectors and Eigenvalues of the covariance matrix.
+eigenValues, eigenVectors = np.linalg.eig(covarianceMatrix)
 
 # 5. Sort the Eigenvectors by their associated Eigenvalues (if not done already) 
 
