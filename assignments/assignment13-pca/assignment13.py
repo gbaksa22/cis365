@@ -33,7 +33,13 @@ numberOfEigenVectorsToKeep = 15  # Change to 100, 200 later
 eigenVectorsToKeep = eigenVectors[:, :numberOfEigenVectorsToKeep]
 
 # 7. Output the percentage of variance that those eigenvectors account for
+def variance_explained(eigenValues, numVectors):
+    totalVariance = np.sum(eigenValues)
+    explainedVariance = np.sum(eigenValues[:numVectors])
+    return (explainedVariance / totalVariance) * 100
 
+variance = variance_explained(eigenValues, numberOfEigenVectorsToKeep)
+print(f"{numberOfEigenVectorsToKeep} eigenvectors account for {variance:.2f}% of the variance.")
 
 # 8. Create a variable ‘eigenVectorsToKeep’ that only contains that number of eigenVectors
 
