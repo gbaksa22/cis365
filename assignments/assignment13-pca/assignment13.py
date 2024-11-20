@@ -44,11 +44,13 @@ print(f"{numberOfEigenVectorsToKeep} eigenvectors account for {variance:.2f}% of
 eigenVectorsToKeep = eigenVectors[:, :numberOfEigenVectorsToKeep]
 
 # 9. Create a variable ‘compressedImage’ it should be calculated by using:
-# compressedImage = np.matmul(myImageMinusMean, eigenVectorsToKeep)
+compressedImage = np.matmul(myImageMinusMean, eigenVectorsToKeep)
 
 # 10. Create a lossy uncompressed image from the above variable: 
-# lossyUncompressedImage = np.matmul(compressedImage, np.transpose(eigenVectorsToKeep)) + myImageMean
+lossyUncompressedImage = np.matmul(compressedImage, np.transpose(eigenVectorsToKeep)) + myImageMean
 
 # 11. Output the compressed image
-
+plt.imshow(lossyUncompressedImage, cmap='gray')
+plt.title(f"Reconstructed Image with {numberOfEigenVectorsToKeep} Eigenvectors")
+plt.show()
 # Repeat the above steps with the variable numberOfEigenVectorsToKeep = {15, 100, 200}
