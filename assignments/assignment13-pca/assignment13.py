@@ -18,6 +18,7 @@ myImageMean = np.mean(myImage, axis=0)
 myImageMinusMean = myImage - myImageMean
 
 # 3. Calculate the covariance matrix
+covarianceMatrix = np.cov(myImageMinusMean, rowvar=False)
 
 # 4. Find the Eigenvectors and Eigenvalues of the covariance matrix.
 
