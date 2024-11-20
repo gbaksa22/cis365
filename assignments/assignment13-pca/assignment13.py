@@ -24,6 +24,9 @@ covarianceMatrix = np.cov(myImageMinusMean, rowvar=False)
 eigenValues, eigenVectors = np.linalg.eig(covarianceMatrix)
 
 # 5. Sort the Eigenvectors by their associated Eigenvalues (if not done already) 
+sortedIndices = np.argsort(eigenValues)[::-1]
+eigenValues = eigenValues[sortedIndices]
+eigenVectors = eigenVectors[:, sortedIndices]
 
 # 6. Set the numberOfEigenVectorsToKeep = 15
 
