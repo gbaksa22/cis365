@@ -12,6 +12,7 @@ plt.show()
 
 
 # 1. Find the mean of the image
+myImageMean = np.mean(myImage, axis=0)
 
 # 2. Subtract the mean of the image
 
