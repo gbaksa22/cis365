@@ -29,7 +29,7 @@ eigenValues = eigenValues[sortedIndices]
 eigenVectors = eigenVectors[:, sortedIndices]
 
 # 6. Set the numberOfEigenVectorsToKeep = 15
-numberOfEigenVectorsToKeep = 15  # Change to 100, 200 later
+numberOfEigenVectorsToKeep = 200
 
 # 7. Output the percentage of variance that those eigenvectors account for
 def variance_explained(eigenValues, numVectors):
