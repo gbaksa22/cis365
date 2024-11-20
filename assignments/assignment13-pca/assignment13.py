@@ -15,6 +15,7 @@ plt.show()
 myImageMean = np.mean(myImage, axis=0)
 
 # 2. Subtract the mean of the image
+myImageMinusMean = myImage - myImageMean
 
 # 3. Calculate the covariance matrix
 
