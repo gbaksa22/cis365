@@ -1,22 +1,30 @@
 # 1. Select a One-Dimensional Function
-# Import required library
+# Import required libraries
+from numpy.random import rand
+from numpy import hstack
 from matplotlib import pyplot as plt
 
-# Simple function to calculate x^2
-def calculate(x):
-    return x * x
+# Function to generate random samples from x^2
+def generate_samples(n=100):
+    # Generate random inputs in the range [-0.5, 0.5]
+    X1 = rand(n) - 0.5
+    # Generate outputs as X^2 (quadratic function)
+    X2 = X1 * X1
+    # Reshape arrays for stacking
+    X1 = X1.reshape(n, 1)
+    X2 = X2.reshape(n, 1)
+    # Stack input and output arrays horizontally
+    return hstack((X1, X2))
 
-# Define inputs
-inputs = [-0.5, -0.4, -0.3, -0.2, -0.1, 0, 0.1, 0.2, 0.3, 0.4, 0.5]
+# Generate samples
+data = generate_samples()
 
-# Calculate outputs
-outputs = [calculate(x) for x in inputs]
-
-# Plot the result
-plt.plot(inputs, outputs)
-plt.title("y = x^2 Function")
+# Plot the samples using a scatter plot
+plt.scatter(data[:, 0], data[:, 1], color='blue', alpha=0.7, label="Samples")
+plt.title("Random Samples from y = x^2")
 plt.xlabel("x")
 plt.ylabel("y")
+plt.legend()
 plt.grid(True)  # Optional: Adds a grid for better visualization
 plt.show()
 
